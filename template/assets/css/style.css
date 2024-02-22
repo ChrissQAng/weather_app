@@ -1,3 +1,7 @@
+@font-face {
+  font-family: ubuntu;
+  src: url(../fonts/Ubuntu-Regular.ttf);
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,10 +12,13 @@ img {
 }
 html {
   font-size: 62.5%;
+  background-color: rgb(134, 153, 220);
+  font-family: ubuntu, Arial, Helvetica, sans-serif;
 }
 
 h1 {
   font-size: clamp(3rem, 4vw, 5rem);
+  color: white;
 }
 h2 {
   font-size: clamp(3rem, 4vw, 4.8rem);
@@ -35,4 +42,40 @@ label {
 a,
 li {
   font-size: clamp(2rem, 2vw, 2rem);
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 100px;
+}
+main {
+  background: url(../img/window-frame.svg) center no-repeat;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+main input:first-of-type {
+  background-color: rgb(223, 110, 110);
+  color: white;
+  border-radius: 25px;
+  margin-bottom: 50px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.button-style {
+  background-color: rgb(223, 110, 110);
+  border: 1px none black;
+  padding: 30px 50px;
+  border-radius: 25px;
+  color: white;
+  font-size: 25px;
+}
+
+button {
+  background-color: transparent;
+  border: none;
 }
