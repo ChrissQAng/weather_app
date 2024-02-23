@@ -47,7 +47,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 main {
   background: url(../img/window-frame.svg) center no-repeat;
