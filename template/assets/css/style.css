@@ -12,7 +12,7 @@ img {
 }
 html {
   font-size: 62.5%;
-  background-color: rgb(134, 153, 220);
+  background-color: rgb(38, 81, 238);
   font-family: ubuntu, Arial, Helvetica, sans-serif;
 }
 
@@ -47,10 +47,10 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 main {
-  background: url(../img/window-frame.svg) center no-repeat;
+  background: url(../img/blue_sky_big.jpg) top no-repeat;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -61,12 +61,17 @@ main input:first-of-type {
   background-color: rgb(223, 110, 110);
   color: white;
   border-radius: 25px;
-  margin-bottom: 50px;
+  margin-bottom: 5px;
+  margin-top: 10px;
   font-size: 30px;
   text-align: center;
 }
-
+.geo-dates p {
+  font-size: 14px;
+  text-align: center;
+}
 .button-style {
+  margin-top: 30px;
   background-color: rgb(223, 110, 110);
   border: 1px none black;
   padding: 30px 50px;
@@ -78,4 +83,16 @@ main input:first-of-type {
 button {
   background-color: transparent;
   border: none;
+}
+.output {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+  /* border: 1px solid black; */
+  padding: 50px;
+}
+.temp-output {
+  font-size: 55px;
 }

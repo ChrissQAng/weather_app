@@ -1,6 +1,5 @@
 const city_name = document.querySelector("#inputCity");
-const state_code = document.querySelector("#inputCity");
-const country_code = document.querySelector("#inputCity");
+const geoTimeDiv = document.querySelector(".geo-dates");
 const output = document.querySelector(".output");
 const reloadButton = document.querySelector("#reload");
 
@@ -15,12 +14,13 @@ const weatherData = (data) => {
     .then((res) => res.json())
     .then((data) => {
       data.forEach((item) => {
-        console.log(item);
+        output.innerHTML = "";
+        geoTimeDiv.innerHTML = "";
+        console.log({ item });
         let lat = item.lat;
         let lon = item.lon;
         let cityName = item.name;
-        console.log(lat);
-        console.log(lon);
+
         fetch(
           `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=de&appid=8fa91c5041e749fe9611443fa12739e7`
         )
@@ -29,26 +29,31 @@ const weatherData = (data) => {
             // console.log(weatherData);
             console.log(weatherData);
             // -- delete output
-            output.innerHTML = "";
+
             // --- output in html
             // location
-            let location = document.createElement("p");
-            location.textContent = cityName;
-            output.appendChild(location);
-            console.log(weatherData.name);
+            // let location = document.createElement("p");
+            // location.textContent = cityName;
+            // output.appendChild(location);
+            // console.log(weatherData.name);
+            // weather icon
+            let weatherIconHtml = document.createElement("img");
+            weatherIconHtml.classList.add("image");
+            output.appendChild(weatherIconHtml);
+            weatherIconHtml.src = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
             // coordinates
             let coordinates = document.createElement("p");
-            coordinates.textContent = `Breitengrad: ${weatherData.coord.lat.toFixed(
+            coordinates.textContent = `BG: ${weatherData.coord.lat.toFixed(
               1
-            )} Längengrad: ${weatherData.coord.lon.toFixed(1)}`;
-            output.appendChild(coordinates);
+            )}° LG: ${weatherData.coord.lon.toFixed(1)}°`;
+            geoTimeDiv.appendChild(coordinates);
             console.log(weatherData.coord.lon);
             console.log(weatherData.coord.lat);
-            // clouds
-            let clouds = document.createElement("p");
-            clouds.textContent = `clouds: ${weatherData.clouds.all}`;
-            output.appendChild(clouds);
-            console.log(weatherData.clouds.all);
+            // // clouds
+            // let clouds = document.createElement("p");
+            // clouds.textContent = `clouds: ${weatherData.clouds.all}`;
+            // output.appendChild(clouds);
+            // console.log(weatherData.clouds.all);
 
             // time
             // let time = document.createElement("p");
@@ -68,61 +73,62 @@ const weatherData = (data) => {
                 console.log(timeData.localTime);
                 let time = document.createElement("p");
                 let localTime = new Date(timeData.localTime);
-                let localTimeNew = localTime.toLocaleTimeString();
+                let localTimeNew = localTime.toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                });
                 let today = new Date();
-                let todayNew = today.toLocaleDateString();
-                time.textContent = `Current local time: ${todayNew} ${localTimeNew}`;
-                output.appendChild(time);
+                // let todayNew = today.toLocaleDateString();
+                time.textContent = `${localTimeNew}`;
+                geoTimeDiv.appendChild(time);
               });
 
-            // date
-            let date = document.createElement("p");
+            // // date
+            // let date = document.createElement("p");
 
-            let date01 = new Date();
-            date.textContent = `datum ${date01.toLocaleDateString()}`;
-            output.appendChild(date);
-            console.log({ date01 });
+            // let date01 = new Date();
+            // date.textContent = `datum ${date01.toLocaleDateString()}`;
+            // output.appendChild(date);
+            // console.log({ date01 });
 
             // temerature
             let temp = document.createElement("p");
-            temp.textContent = `temperatur ${weatherData.main.temp.toFixed(
-              1
-            )} C`;
-            // time.setAttribute("class", ) - Klasse vergeben
+            temp.setAttribute("class", "temp-output");
+            temp.textContent = `${weatherData.main.temp.toFixed(1)}° C`;
             output.appendChild(temp);
             console.log(weatherData.main.temp);
-            // wind
+            // feels like
+            let tempFl = document.createElement("p");
+            // tempFl.setAttribute("class", "temp-output");
+            tempFl.textContent = `feels like ${weatherData.main.feels_like.toFixed(
+              1
+            )}° C`;
+            output.appendChild(tempFl);
+
+            // windspeed
             let wind = document.createElement("p");
-            wind.textContent = `wind ${weatherData.wind.speed}`;
+            wind.textContent = `${weatherData.wind.speed} m/s`;
             output.appendChild(wind);
             console.log(weatherData.wind.speed);
             // prespressure
             let pressure = document.createElement("p");
-            pressure.textContent = `luftdruck ${weatherData.main.pressure}hcPa`;
+            pressure.textContent = `${weatherData.main.pressure} hPa`;
             output.appendChild(pressure);
             console.log(weatherData.main.pressure);
             // sunrise
             let sunrise = document.createElement("p");
             let timeTrans02 = weatherData.sys.sunrise;
             let mySunrise = new Date(timeTrans02 * 1000);
-            sunrise.textContent = `sonnenaufgang ${mySunrise.toLocaleTimeString()}`;
+            sunrise.textContent = `SR ${mySunrise.toLocaleTimeString()}`;
             output.appendChild(sunrise);
             console.log(weatherData.sys.sunrise);
             // sunset
             let sunset = document.createElement("p");
             let timeTrans01 = weatherData.sys.sunset;
             let mySunset = new Date(timeTrans01 * 1000);
-            sunset.textContent = `sonnenuntergang ${mySunset.toLocaleTimeString()}`;
+            sunset.textContent = `SS ${mySunset.toLocaleTimeString()}`;
             output.appendChild(sunset);
             console.log(weatherData.sys.sunset);
-            // weather icon
-            let weatherIconHtml = document.createElement("img");
-            weatherIconHtml.classList.add("image");
-            output.appendChild(weatherIconHtml);
-            weatherIconHtml.src = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
-
-            // let weatherIcon = weatherData.weather[0].description;
-            // console.log({ weatherIcon });
           })
           .catch((err) =>
             console.error(
