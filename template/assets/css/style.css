@@ -101,6 +101,13 @@ button {
   /* border: 1px solid black; */
   padding: 50px;
 }
+/* .output-sub {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 30px;
+  align-items: center;
+} */
 .temp-output {
   font-size: 55px;
 }
@@ -108,5 +115,5 @@ button {
   margin-top: 30px;
   background-color: rgba(0, 0, 0, 0.203);
   border-radius: 25px;
-  width: 254px;
+  /* width: 254px; */
 }

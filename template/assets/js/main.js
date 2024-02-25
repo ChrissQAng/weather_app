@@ -1,6 +1,7 @@
 const city_name = document.querySelector("#inputCity");
 const geoTimeDiv = document.querySelector(".geo-dates");
 const output = document.querySelector(".output");
+const outputSub = document.querySelector(".output-sub");
 const reloadButtons = document.querySelectorAll(".reload");
 
 reloadButtons.forEach((button) => {
@@ -40,6 +41,7 @@ const weatherData = (data) => {
             // console.log(weatherData.name);
             // --- ADD CLASS to div output
             document.querySelector(".output").classList.add("dark-box");
+            // --- weather icon
             let weatherIconHtml = document.createElement("img");
             weatherIconHtml.classList.add("image");
             output.appendChild(weatherIconHtml);
@@ -102,7 +104,6 @@ const weatherData = (data) => {
             console.log(weatherData.main.temp);
             // feels like
             let tempFl = document.createElement("p");
-            // tempFl.setAttribute("class", "temp-output");
             tempFl.textContent = `feels like ${weatherData.main.feels_like.toFixed(
               1
             )}° C`;
@@ -122,14 +123,20 @@ const weatherData = (data) => {
             let sunrise = document.createElement("p");
             let timeTrans02 = weatherData.sys.sunrise;
             let mySunrise = new Date(timeTrans02 * 1000);
-            sunrise.textContent = `SR ${mySunrise.toLocaleTimeString()}`;
+            sunrise.textContent = `SR ${mySunrise.toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}`;
             output.appendChild(sunrise);
             console.log(weatherData.sys.sunrise);
             // sunset
             let sunset = document.createElement("p");
             let timeTrans01 = weatherData.sys.sunset;
             let mySunset = new Date(timeTrans01 * 1000);
-            sunset.textContent = `SS ${mySunset.toLocaleTimeString()}`;
+            sunset.textContent = `SS ${mySunset.toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}`;
             output.appendChild(sunset);
             console.log(weatherData.sys.sunset);
           })
