@@ -14,6 +14,7 @@ html {
   font-size: 62.5%;
   background-color: rgb(38, 81, 238);
   font-family: ubuntu, Arial, Helvetica, sans-serif;
+  background: url(../img/blue_sky_big.jpg) top no-repeat;
 }
 
 h1 {
@@ -50,21 +51,27 @@ header {
   margin-bottom: 20px;
 }
 main {
-  background: url(../img/blue_sky_big.jpg) top no-repeat;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
 }
-main input:first-of-type {
-  background-color: rgb(223, 110, 110);
-  color: white;
+input[type="text"] {
+  background-color: #e8f0fe;
+  color: black;
   border-radius: 25px;
   margin-bottom: 5px;
   margin-top: 10px;
   font-size: 30px;
   text-align: center;
+}
+/* input[type="text"]:focus {
+  background-color: #e8f0fe;
+  color: white;
+} */
+.geo-dates {
+  height: 40px;
 }
 .geo-dates p {
   font-size: 14px;
@@ -72,11 +79,12 @@ main input:first-of-type {
 }
 .button-style {
   margin-top: 30px;
-  background-color: rgb(223, 110, 110);
-  border: 1px none black;
-  padding: 30px 50px;
+  /* background-color: rgb(223, 110, 110); */
+  background-color: #e8f0fe;
+  border: 1px solid black;
+  padding: 25px 40px;
   border-radius: 25px;
-  color: white;
+  color: black;
   font-size: 25px;
 }
 
@@ -87,7 +95,7 @@ button {
 .output {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 30px;
   align-items: center;
   /* border: 1px solid black; */
@@ -95,4 +103,10 @@ button {
 }
 .temp-output {
   font-size: 55px;
+}
+.dark-box {
+  margin-top: 30px;
+  background-color: rgba(0, 0, 0, 0.203);
+  border-radius: 25px;
+  width: 254px;
 }

@@ -1,10 +1,12 @@
 const city_name = document.querySelector("#inputCity");
 const geoTimeDiv = document.querySelector(".geo-dates");
 const output = document.querySelector(".output");
-const reloadButton = document.querySelector("#reload");
+const reloadButtons = document.querySelectorAll(".reload");
 
-reloadButton.addEventListener("click", () => {
-  window.onload;
+reloadButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    location.reload();
+  });
 });
 
 const weatherData = (data) => {
@@ -36,16 +38,17 @@ const weatherData = (data) => {
             // location.textContent = cityName;
             // output.appendChild(location);
             // console.log(weatherData.name);
-            // weather icon
+            // --- ADD CLASS to div output
+            document.querySelector(".output").classList.add("dark-box");
             let weatherIconHtml = document.createElement("img");
             weatherIconHtml.classList.add("image");
             output.appendChild(weatherIconHtml);
             weatherIconHtml.src = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
             // coordinates
             let coordinates = document.createElement("p");
-            coordinates.textContent = `BG: ${weatherData.coord.lat.toFixed(
+            coordinates.textContent = `lat: ${weatherData.coord.lat.toFixed(
               1
-            )}° LG: ${weatherData.coord.lon.toFixed(1)}°`;
+            )}° lon: ${weatherData.coord.lon.toFixed(1)}°`;
             geoTimeDiv.appendChild(coordinates);
             console.log(weatherData.coord.lon);
             console.log(weatherData.coord.lat);
@@ -107,7 +110,7 @@ const weatherData = (data) => {
 
             // windspeed
             let wind = document.createElement("p");
-            wind.textContent = `${weatherData.wind.speed} m/s`;
+            wind.textContent = `🌬️ ${weatherData.wind.speed} m/s`;
             output.appendChild(wind);
             console.log(weatherData.wind.speed);
             // prespressure
