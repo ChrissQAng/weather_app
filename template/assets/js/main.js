@@ -111,7 +111,7 @@ const weatherData = (data) => {
 
             // windspeed
             let wind = document.createElement("p");
-            wind.textContent = `🌬️ ${weatherData.wind.speed} m/s`;
+            wind.textContent = `${weatherData.wind.speed} m/s`;
             output.appendChild(wind);
             console.log(weatherData.wind.speed);
             // prespressure
